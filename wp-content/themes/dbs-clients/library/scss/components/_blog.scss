@@ -1,0 +1,210 @@
+/**
+ * Blog Index and Single Post Styles
+ * DBS>Interactive
+ */
+
+.blog, .archive, .search {
+
+	.post {
+		border-bottom: 1px solid $gray;
+		margin-bottom: $spacing;
+		padding-bottom: $spacing;
+		position: relative;
+
+		&:last-child {border: none;}
+
+		&__content {
+			display: flex;
+		}
+		
+		&__image {
+			background: $gray;
+			height: 4rem;
+			min-width: 6rem;
+			overflow: hidden;
+			position: relative;
+			width: 6rem;
+
+			img {
+				height: 100%;
+				object-fit: cover;
+				position: absolute;
+					top: 0;
+					left: 0;
+				width: 100%;
+			}
+		}
+
+		&__title {
+			padding-left: $spacing;
+
+			.circle-link {
+				display: block;
+				padding-right: 3em;
+				position: static;
+				width: 100%;
+
+				&:before {
+					right: 0;
+					top: 0;
+					transform: none;
+				}
+
+				&:after {
+					right: .6rem;
+					top: .6rem;
+					transform: none;
+				}
+			}
+		}
+	}
+
+	@include media($screen-md) {
+		.page-header {
+			min-height: 22rem;
+
+			.image-wrapper img {object-position: 0 -2rem;}
+		}
+
+		.blog__container {
+			display: flex;
+		}
+
+		.blog-main {
+			padding-right: $spacing * 2;
+			width: 70%;
+		}
+
+		.post__image {
+			height: 8rem;
+			min-width: 11rem;
+			width: 11rem;
+		}
+
+		.blog-sidebar {
+			width: 30%;
+		}
+	}
+}
+
+//Single blog posts
+.blog-post {
+	// General Blog Styles
+	ol { counter-reset: item; }
+	ol li, ul li {
+
+		display: block;
+		padding-right: 1rem;
+		position: relative;
+	}
+	ol li:before, ul li:before {
+		@extend %header-type;
+		color: $black;
+		font-weight: normal;
+		position: absolute;
+			right: 100%;
+	}
+	ol li:before { content: counter(item) ". "; counter-increment: item; }
+	ul li:before { content: '\2022'; }
+
+	a:not([class^='button']) {
+		color: $primaryColor;
+		&:hover { color: lighten($primaryColor, 10%); }
+	}
+
+	&__header {
+		background-color: $gray;
+		background-image: linear-gradient(180deg, $gray 0%, $grayLighter 200%);
+		background-size: cover;
+		background-position: 50%;
+		color: $white;
+		padding: 6em 1em;
+		position: relative;
+
+		&:before {
+			background: rgba(0,0,0,.3);
+			content: '';
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+			position: absolute;
+				left: 0;
+				top: 0;
+		}
+
+		.button, h1, time {
+			position: relative;
+			z-index: 1;
+		}
+
+		.category,
+		.publication-date {
+			display: block;
+			margin-bottom: $spacing;
+			text-transform: uppercase;
+		}
+	}
+
+	&__social-media {
+		padding: $spacing;
+		padding-top: 2em;//reset
+		@include media($screen-sm) {
+			padding-top: 4em;
+		}
+
+		ul, li { margin: 0; padding: 0; }
+		ul li:before { display: none; }
+		ul {
+			display: table;
+			li {
+				display: inline-block;
+			}
+		}
+
+		.social-media__link {
+			margin-bottom: 2px;
+			svg { fill: $black; height: 30px;  transition: fill .25s; vertical-align: top; width: 30px;}
+			&:hover svg { fill: $gray; transition: fill .25s;}
+
+			// OVERRIDES FILL COLOR ON THE ENVELOP SVG AFTER I WAS UNABLE TO CHANGE THE FILL COLOR ON THE SVG ITSELF - TylerAkin
+			svg .st0 {
+				fill: $black;
+				width: 5%;
+			}
+		}
+	}
+
+	&__container {
+		a.unassist[target='_blank']:after { display: none; }
+
+		@include media($screen-md) {
+			display: flex;
+
+			.blog-main {
+				padding-right: $spacing * 2;
+				width: 70%;
+			}
+
+			.blog-sidebar {
+				width: 30%;
+			}
+		}
+	}
+
+	&__footer {
+		padding: 1em 0 3em;
+
+		.button-prev,
+		.button-next {
+			&.nowhere {
+				display: none;
+			}
+		}
+	}
+
+	&__navigation {
+		display: flex;
+			justify-content: space-between;
+		width: 100%;
+	}
+}

@@ -1,0 +1,247 @@
+/**
+ * Form Styles
+ * DBS>Interactive
+ */
+
+/**
+ * GravityForms Resets
+ */
+
+.validation_error{
+	color: $secondaryColor;
+	border-bottom: 0.1em solid $secondaryColor;
+	padding-bottom: 1em;
+}
+
+.gform_body {
+	padding-top: 2em;
+	ul { list-style: none; padding: 0; }
+
+	.gfield_label {
+		font-weight: bold;
+	}
+}
+
+.gfield {
+	margin-bottom: 1em;
+}
+
+.gfield_list_icons {
+	padding: .5em;
+}
+
+// Hide validation honeypots
+.gform_validation_container {
+	display: none !important;
+}
+
+.gf_progressbar_wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+/**
+ * Add-clear plugin resets
+ */
+
+.add-clear-span {
+	display: block;
+	position: relative;
+
+	// The 'x' link
+	& > .add-clear-button {
+		display: none !important;
+		top: .5em;
+		right: .5em;
+	}
+}
+
+
+/**
+ * Input Field Styles
+ */
+
+textarea {
+	min-height: 5em;
+}
+
+input[type=radio] {
+	margin-right: .5em;
+}
+
+select {
+	min-width: 25%;
+	margin: 0;
+}
+
+// Text and text-like input fields
+textarea,
+input[type=text]:not([id=search-input]),
+input[type=email],
+input[type=date],
+input[type=number],
+input[type=time],
+input[type=week],
+input[type=month],
+input[type=tel],
+input[type=search],
+input[type=url] {
+	display: block;
+	border: 1px solid $gray;
+	margin: .333em 0;
+	max-width: 100%;
+	padding: .666em;
+	width: 100%;
+}
+
+fieldset {
+	margin-bottom: $spacing*2;
+}
+
+/**
+ * Complex field arrangements
+ */
+.ginput_complex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	@include media($screen-sm){
+		flex-direction: row;
+		// Field wrappers in the group
+		span {
+			display: inline-block;
+			width: 50%;
+
+			// Add margin to the second field
+			&:nth-of-type(2n) {
+				margin-left: 1em;
+			}
+		}
+	}
+
+	label { font-style: italic; }
+}
+
+/**
+ * Remove IE's clear so we don't conflict with the add-clear button functionality 2017-09-12
+ */
+input[type=text]::-ms-clear {
+	display: none;
+}
+
+
+/**
+ * Validation and error message styling
+ */
+
+.gfield_error label,
+.validation_message {
+	color: red;
+}
+
+.gfield_error input,
+.gfield_error textarea,
+.gfield_error select {
+	border-color: red;
+}
+
+
+/**
+ * Loader animation
+ */
+
+.gform_ajax_spinner {
+	@include size(1em);
+	animation: spinner_animation 1s infinite ease;
+	border-radius: 50%;
+	font-size: 5px;
+	margin: 0 5em;
+	transform: translateZ(0);
+}
+
+$spinner_color: $black;
+
+@-webkit-keyframes spinner_animation {
+	0%,
+	100% {
+		box-shadow: 0em -2.6em 0em 0em $spinner_color, 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.5), -1.8em -1.8em 0 0em rgba($spinner_color, 0.7);
+	}
+	12.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.7), 1.8em -1.8em 0 0em $spinner_color, 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.5);
+	}
+	25% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.5), 1.8em -1.8em 0 0em rgba($spinner_color, 0.7), 2.5em 0em 0 0em $spinner_color, 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	37.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.5), 2.5em 0em 0 0em rgba($spinner_color, 0.7), 1.75em 1.75em 0 0em $spinner_color, 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	50% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.5), 1.75em 1.75em 0 0em rgba($spinner_color, 0.7), 0em 2.5em 0 0em $spinner_color, -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	62.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.5), 0em 2.5em 0 0em rgba($spinner_color, 0.7), -1.8em 1.8em 0 0em $spinner_color, -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	75% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.5), -1.8em 1.8em 0 0em rgba($spinner_color, 0.7), -2.6em 0em 0 0em $spinner_color, -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	87.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.5), -2.6em 0em 0 0em rgba($spinner_color, 0.7), -1.8em -1.8em 0 0em $spinner_color;
+	}
+}
+
+@keyframes spinner_animation {
+	0%,
+	100% {
+		box-shadow: 0em -2.6em 0em 0em $spinner_color, 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.5), -1.8em -1.8em 0 0em rgba($spinner_color, 0.7);
+	}
+	12.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.7), 1.8em -1.8em 0 0em $spinner_color, 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.5);
+	}
+	25% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.5), 1.8em -1.8em 0 0em rgba($spinner_color, 0.7), 2.5em 0em 0 0em $spinner_color, 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	37.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.5), 2.5em 0em 0 0em rgba($spinner_color, 0.7), 1.75em 1.75em 0 0em $spinner_color, 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	50% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.5), 1.75em 1.75em 0 0em rgba($spinner_color, 0.7), 0em 2.5em 0 0em $spinner_color, -1.8em 1.8em 0 0em rgba($spinner_color, 0.2), -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	62.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.5), 0em 2.5em 0 0em rgba($spinner_color, 0.7), -1.8em 1.8em 0 0em $spinner_color, -2.6em 0em 0 0em rgba($spinner_color, 0.2), -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	75% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.5), -1.8em 1.8em 0 0em rgba($spinner_color, 0.7), -2.6em 0em 0 0em $spinner_color, -1.8em -1.8em 0 0em rgba($spinner_color, 0.2);
+	}
+	87.5% {
+		box-shadow: 0em -2.6em 0em 0em rgba($spinner_color, 0.2), 1.8em -1.8em 0 0em rgba($spinner_color, 0.2), 2.5em 0em 0 0em rgba($spinner_color, 0.2), 1.75em 1.75em 0 0em rgba($spinner_color, 0.2), 0em 2.5em 0 0em rgba($spinner_color, 0.2), -1.8em 1.8em 0 0em rgba($spinner_color, 0.5), -2.6em 0em 0 0em rgba($spinner_color, 0.7), -1.8em -1.8em 0 0em $spinner_color;
+	}
+}
+
+/**
+ * Animated Form Label
+ *
+ * Class must be added in the GForms admin
+ */
+.animate-label {
+	position: relative;
+
+	label {
+		background: $white;
+		padding: 0 .33rem;
+		position: absolute;
+			top: 50%;
+			left: .33rem;
+		transition: .2s ease-in-out;
+		transform: translateY(-50%);
+		transform-origin: left;
+	}
+
+	@at-root .gform_validation_error .animate-label,
+	&.active {
+		label {transform: translateY(-2.15rem) scale(.75);}
+	}
+
+	&.gfield_error {
+		label {transform: translateY(-3.15rem) scale(.75);}
+	}
+}

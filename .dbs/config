@@ -1,0 +1,16 @@
+# @file config
+#
+# Configuration file for local dbs infrastructure configuration
+#
+# These are necessary variables:
+# host= the_server, eg dbs10
+# domain= the_domain_name sans www, eg dbswebsite.com
+# staging= the_staging_number, eg 30
+# staging_server= the_staging_server, eg dbs9.dx30.net
+#
+# This file is parseable by scripts
+###############################################################################
+domain=dbsclients.com
+staging=37
+host=dbs16.dx30.net
+staging_server=dbs16.dx30.net

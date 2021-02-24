@@ -1,0 +1,49 @@
+/**
+ * Debug styles
+ * DBS>Interactive
+ */
+
+// Mixins
+@import "mixins/mixins";
+@import "mixins/layout";
+
+// Required Variables and definitions
+@import "base/font";
+@import "base/vars";
+
+
+.debug-current-template {
+	// position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	padding: 0.5em;
+	background: #000;
+	pointer-events: none;
+	color: #fff;
+	@at-root {
+		body.wcag-aaa-dark .debug-current-template,
+		body.wcag-aaa-light .debug-current-template {
+			background: transparent;
+		}
+	}
+}
+
+
+.srcset-debug {
+	position: relative;
+	display: block;
+	line-height: 0;
+
+	&__currentsrc {
+		@include font-scale(-1, $bodyFontSize);
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		color: #ffffff;
+		padding: 1em;
+	}
+}

@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# pre-commit hook for DBS: 
+#
+# check for conflicts
+#
+
+remote="$1"
+url="$2"
+
+themefolder=$(dirname `find . -type d -name Slate`)
+cd $themefolder || exit 1
+
+if grep -r -I --exclude-dir=node_modules '<<<' *; then
+	echo "Evidence of a conflict, not pushing"
+	exit 1
+fi
+
+# for leading spaces
+#grep -r "^  \+" views/*
+
+# git list of files that are added
+#files=$(git diff --cached --name-only --diff-filter=ACM)
+
+# check for upper case
+#LC_ALL_SAVE=LC_ALL
+#export LC_ALL=C
+#grep "[A-Z]"
+cd -
+exit 0

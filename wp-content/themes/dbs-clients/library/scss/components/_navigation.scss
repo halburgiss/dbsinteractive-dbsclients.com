@@ -1,0 +1,333 @@
+/**
+ * Slate Navigation Styles
+ * DBS>Interactive
+ *
+ * ************************************************************************
+ * This file is for the navigation menu in the header - both the mobile and
+ * desktop menu. Keep header/branding specific styles in _header.scss.
+ * ************************************************************************
+ *
+ * 		menu-toggle - the hamburger menu button
+ * 			open - the class given when the toggle button is in the open state
+ * 			menu-toggle__bar - the individual hamburger bars
+ * 		submenu-toggle - a submenu toggle button
+ * 			open - the class given when the toggle button is in the open state
+ *
+ * 		site-header__navigation - the header container for all site header
+ * 			navigation.
+ *
+ * 			secondary-menu - the (nav element) container for the secondary menu
+ * 			main-menu - the (nav element) container for the main menu
+ *
+ * 		menu - the container class for a menu ( ul element )
+ * 			open - the class added to a ( mobile ) menu that is opened
+ *
+ * 			menu__item - a menu item ( li element )
+ * 				menu__item--active - the active item ( current page )
+ * 				menu__item--parent - an item that has a submenu
+ *
+ * 			menu__submenu - a submenu element ( ul element )
+ * 				menu__submenu--l1 - a first level submenu
+ * 				menu__submenu--l2 - etc...
+ *
+ */
+
+
+/**
+ * Hamburger Icon
+ */
+.menu-toggle {
+	background-color: transparent;
+	border: 0;
+	display: block;
+	height: 2em;
+	margin-right: -.4em; // Move the right edge of the icon all the way to the edge of the container
+	padding: 0.4em;
+	width: 2.25em;
+
+	&__bar {
+		background: $charcoal;
+		display: block;
+		height: 2px;
+		margin: 0 auto 5px;
+		opacity: 1;
+		transition: transform 0.3s, width 0.3s;
+		width: 100%;
+		&:last-child { margin-bottom: 0; }
+	}
+
+	&.open > .menu-toggle__bar {
+		&:nth-child(1) { transform: translate(0, 6px) rotate(45deg); }
+		&:nth-child(2) { width: 0; }
+		&:nth-child(3) { transform: translate(0, -8px) rotate(-45deg); }
+	}
+
+	// Don't display in desktop
+	@include media($mobileNavBP) {
+		display: none;
+	}
+}
+
+/**
+ * Submenu Toggle Icon
+ */
+.submenu-toggle {
+	background-color: transparent;
+	border: 0;
+	height: 3em;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+		top:  0;
+		right: 0;
+	transition: transform 0.3s ease-in-out;
+	transform: none;
+	width: 3em;
+
+	svg {
+		height: 2rem;
+		width: 2rem;
+		transition: transform .3s ease-in-out;
+	}
+
+	&.open {
+		svg {
+			transform: rotate(180deg);
+		}
+	}
+
+	// Desktop styles
+	@include media($mobileNavBP) {
+		height: 2em;
+		position: relative;
+
+		svg {height: 100%;}
+
+		.menu__submenu > .menu__item > & {
+			opacity: 1;
+			right: 0;
+			transform: translateY(-50%) rotate(-90deg);
+		}
+	}
+}
+
+.subitem .submenu-toggle {
+	@include media($mobileNavBP) {
+		position: absolute;
+			top: 50%;
+	}
+}
+
+/**
+ * General Menu Styles
+ *
+ * These styles apply to both the mobile and the desktop menu.
+ */
+.site-header__navigation > nav {
+	font-family: $bodyFont;
+	z-index: 100;
+	// Resets
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		color: $charcoal;
+		display: block;
+		font-size: 1em;
+		text-decoration: none;
+		text-transform: uppercase;
+
+		&:hover, &:active, &:focus {
+			color: lighten($charcoal, 10%);
+		}
+	}
+}
+
+/**
+ * Mobile Menu Styles
+ */
+@include media($mobileNavBPMax, max) {
+
+	.site-header__navigation {
+		background-color: $grayLighter;
+		border-bottom: 1px solid $charcoal;
+		max-height: 0;
+		overflow-x: auto; // Should probably use javascript animation...
+		position: absolute;
+			top: 100%;
+			right: 0;
+			left: 0;
+		transition: max-height .2s ease-in-out,
+					opacity .2s ease-in-out,
+					visibility .2s ease-in-out;
+		visibility: hidden;
+
+		/**
+		 * Styles for when the mobile menu is opened.
+		 */
+		&.open {
+			max-height: 100vh;
+			visibility: visible;
+		}
+	}
+
+	.menu {
+
+		/**
+		 * Individual menu item
+		 */
+		&__item {
+			border-top: 1px solid $charcoal;
+			display: block;
+			position: relative;
+
+			a {
+				padding: 1em 1.5em;
+			}
+		}
+
+		/**
+		 * Submenu
+		 */
+		&__submenu {
+			background-color: $grayLighter;
+			max-height: 0;
+			overflow: hidden;
+
+			/**
+			 * Submenus when hovering parent
+			 */
+			.open > & {
+				max-height: none;
+			}
+
+			/**
+			 * Submenu item styles
+			 */
+			.menu__item {
+				a {
+					background-color: lighten($grayLighter, 10%);
+					text-transform: none;
+				}
+			}
+
+			/**
+			 * Sub-Submenus
+			 */
+			& & {
+				// TODO: Placeholder; remove if not used
+				a {
+					background-color: $gray;
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Desktop Menu Styles
+ */
+@include media($mobileNavBP) {
+	/**
+	 * Styles specific to the secondary menu
+	 */
+	.secondary-menu {
+		margin-bottom: 1em;
+	}
+
+	.main-menu,
+	.secondary-menu {
+		display: flex;
+			justify-content: flex-end;
+	}
+
+	.menu {
+		display: flex;
+		    align-items: center;
+			flex-direction: row;
+			justify-content: flex-end;
+		position: relative;
+
+		/**
+		 * Individual menu item
+		 */
+		&__item {
+			display: block;
+			margin: 0 .5em;
+			padding: .1em;
+			position: relative;
+
+			a {
+				padding: .333em calc(.25em + .5vw);
+			}
+		}
+
+		&__item--parent {
+			display: flex;
+				align-items: center;
+
+			.submenu-toggle svg {transition: .25s transform;}
+
+			&:hover,
+			&:focus {
+				&>.submenu-toggle svg {@include media($mobileNavBP) {transform: rotate(180deg);}}
+			}
+		}
+
+		/**
+		 * Submenu
+		 */
+		&__submenu {
+			background-color: $grayLighter;
+			opacity: 0;
+			position: absolute;
+			   top: 100%;
+			   left: 50%;
+			transform: translateX(-50%);
+			transition: opacity .32s ease-in-out,
+						visibility .32s ease-in-out;
+			visibility: hidden;
+			width: 16em;
+
+			/**
+			 * Submenus with open class and when hovering parent
+			 */
+			.open > &,
+			.menu__item--parent:hover > & {
+				opacity: 1;
+				transition: opacity .16s ease-in-out,
+							visibility .16s ease-in-out;
+				visibility: visible;
+			}
+
+			/**
+			 * Submenu item styles
+			 */
+			.menu__item {
+				margin: 0;
+
+				a {
+					padding: .75em 1.25em;
+					text-transform: none;
+
+					// Submenu item background color on hover
+					&:hover { background-color: lighten($grayLighter, 10%); }
+				}
+			}
+
+			/**
+			 * Sub-Submenus
+			 */
+			& & {
+				// TODO: Placeholder; remove if not used
+				border-left: 1px solid $charcoal;
+				left: 100%;
+				top: 0;
+				transform: none;
+			}
+		}
+	}
+}

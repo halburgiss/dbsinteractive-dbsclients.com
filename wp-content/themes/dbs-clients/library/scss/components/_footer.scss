@@ -1,0 +1,103 @@
+/**
+ * Footer styles
+ * DBS>Interactive
+ *
+ * Classname Structure
+ *
+ * The rational was to avoid using elements in the stylesheet and to limit nesting.
+ *
+ * 		site-footer - the footer element
+ *
+ * 			site-footer__navigation - footer menu
+ * 				footer-menu__item - footer menu item
+ *
+ * 			site-footer__credits - copyright info container
+ *
+ * 			site-footer__copyright - copyright statement
+ *
+ */
+
+.site-footer {
+	background-color: $grayDarkest;
+	&, h1, h2, h3, h4, h5, h6 {
+		color: $white;
+	}
+	overflow: hidden;
+	clear: both;
+	margin-top: auto; // Sticky footer
+
+
+	&__container {
+		padding: 1em $spacing;
+	}
+
+	// Resets
+	ul { list-style: none; margin: 0; padding: 0; }
+
+	// Default link styles
+	a {
+		color: $white;
+		text-decoration: none;
+		&:hover { text-decoration: underline; }
+	}
+
+	.site-footer__logo svg {
+		display: block;
+		max-width: 10em;
+		padding-bottom: 1em;
+	}
+
+	&__content {
+		display: inline-block;
+	}
+
+	&__business {
+		ul, li {
+			display: block;
+		}
+	}
+
+	&__navigation {
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+
+		.footer-menu__item {
+			a {
+				padding: .333em calc(.25em + .5vw);
+			}
+		}
+
+		li { display: inline-block; }
+	}
+
+	.social-media {
+		margin: 1em 0;
+
+		&__link {display: inline-block;}
+
+		a {display: block; width: 2em;}
+
+		svg path {fill: $white;}
+	}
+
+	&__credits {
+		display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+		padding: 1em 0 0;
+		width: 100%;
+
+		.legal-footer {
+			display: inline-block;
+
+			ul, li {display: inline-block;}
+
+			.legal-menu__item {
+				border-left: 1px solid $white;
+				margin-left: .5rem;
+				padding-left: .75rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# post-checkout hook, to run gulp automatically on all pulls and merges.
+#
+# Should live .git/hooks folder on each system individually. Make sure
+# its executable: chmod +x post-checkout.
+#
+# Note: Fresh clones, forks and checkouts will need to have gulp run
+# manually (this hook won't do it).
+#
+# If the current branch is staging, and the custom git-stage script
+# is in the path, then attempt an autodeploy to staging.
+#
+# @dbsinteractive 2016-12-21
+#
+#######################################################################
+
+
+# look for .nobuild file and skip the entire build process 2017-11-07 HB
+[ -f .dbs/.nobuild ] && echo Skipping gulp build for now ... && exit 0
+
+# Have to do this. See http://stackoverflow.com/questions/4043609
+unset GIT_DIR
+
+cd $(git rev-parse --show-toplevel)
+dir=$(dirname `find . -maxdepth 4 -name gulpfile.js`)
+cd $dir || exit 1
+
+echo "Running hook for gulp tasks..."
+
+# Files that have been changed as a result of this change
+# Use ORIG_HEAD here in post-merge, not HEAD@{1}
+changed_files=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)
+
+# args to pass to gulp (tasks to run)
+args=''
+
+# Check if js files have been changed
+if [[ $changed_files == *"/library/js/"* ]] ; then
+    args=$args" js"
+	echo "Javascript files changed. Recompiling javascript..."
+fi
+
+# Check if sass files have been changed
+if [[ $changed_files == *"/library/scss/"* ]] ; then
+    args=$args" sass"
+	echo "SASS files changed. Recompiling sass..."
+fi
+
+# Check if sass files have been changed
+if [[ $changed_files == *"/library/icons/"* ]] ; then
+    args=$args" icons"
+	echo "Grunt Icons updated. Rerunning 'gulp icons'..."
+fi
+
+
+# Run gulp if we have arguments
+if [[ $args != '' ]] ; then
+	gulp $args
+
+	# If we are on the master branch, assume we are live and warn to clear the cache
+	if [[ $(git rev-parse --abbrev-ref HEAD) =~ "master" ]] ; then
+		printf "\n\n[\e[0;31mWARN\e[m] \e[0;31m!!!\e[m You may need to clear the cache before changes are visible. \e[0;31m!!!\e[m\n\n"
+	fi
+fi
+
+
+# if we are on the staging branch && git-stage script is nearby, then autodeploy
+# 2019-03-04
+branch_name=$(git branch | grep "*" | sed "s/\* //")
+# this is the script that runs a pull on the server. It requires privileges
+git_stage=$(which git-stage)
+if [[ 'staging' == $branch_name && ! -z $git_stage ]]; then
+	git-stage
+fi
+
+

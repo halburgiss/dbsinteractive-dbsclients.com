@@ -1,0 +1,14 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 123 123" style="enable-background:new 0 0 123 123;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#ED9148;}
+</style>
+<g>
+	<path class="st0" d="M61.5,10C33.1,10,10,33.1,10,61.5S33.1,113,61.5,113S113,89.9,113,61.5S89.9,10,61.5,10z M61.5,111.5
+		c-27.6,0-50-22.4-50-50s22.4-50,50-50s50,22.4,50,50S89.1,111.5,61.5,111.5z"/>
+	<polygon class="st0" points="49,78.7 49,94.4 74.1,69.3 64.5,63.3 	"/>
+	<polygon class="st0" points="49.1,44.3 74.1,69.3 81.9,61.5 49.1,28.6 	"/>
+	<path class="st0" d="M61.5,3.5c-32,0-58,26-58,58s26,58,58,58s58-26,58-58S93.5,3.5,61.5,3.5z M61.5,116.5c-30.3,0-55-24.7-55-55
+		s24.7-55,55-55s55,24.7,55,55S91.8,116.5,61.5,116.5z"/>
+</g>
+</svg>

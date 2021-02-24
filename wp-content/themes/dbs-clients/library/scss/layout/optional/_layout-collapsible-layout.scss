@@ -1,0 +1,84 @@
+/**
+ * Collapsible Layout
+ * DBS>Interactive
+ */
+
+.layout-collapsible {
+	@include default-margin;
+
+	.collapsible-row {
+		overflow: hidden;
+		border-top: 1px solid $white;
+
+		&:first-of-type {border: none;}
+
+		// Row Header
+		&__header {
+			@include font-scale(2);
+			background: $grayLightest;
+			border: none;
+			color: $textColor;
+			cursor: pointer;
+			display: block;
+			margin-bottom: 0;
+			padding: 1rem 4rem 1rem 2rem;
+			position: relative;
+			text-align: left;
+			transition: .3s;
+			width: 100%;
+
+			&:hover,
+			&:focus {
+				background: $grayLighter;
+			}
+
+			&:before,
+			&:after {
+				background-color: $textColor;
+				border-radius: 10%;
+				content: '';
+				display: block;
+				height: 1.5rem;
+				position: absolute;
+					top: 50%;
+					right: 2rem;
+				transition: transform .35s;
+				transform: translate(-100%, -50%);
+				width: .18rem;
+			}
+
+			&:before {
+				transform: translate(-100%, -50%) rotate(90deg);
+			}
+
+			@at-root .layout-collapsible .expanded .collapsible-row__header {
+				background: $grayLighter;
+
+				&:after {transform: translate(-100%, -50%) rotate(90deg);}
+			}
+		}
+
+		// Row Content
+		&__content {
+			padding: 2rem;
+
+			@include media($screen-sm) {
+				padding: 2rem 2rem 3rem;
+			}
+		}
+
+		&__content--wrapper {
+			overflow: hidden;
+			transition: max-height .4s ease-in-out, visibility 0s linear .5s;
+
+			&.loaded { // Ensures that content is visible if JS doesn't load
+				max-height: 0;
+			}
+
+			@at-root .layout-collapsible .expanded .collapsible-row__content--wrapper {
+				max-height: 15em; // May need to be adjusted based on content height
+				transition: max-height .4s ease-in-out, visibility 0s linear;
+			}
+		}
+	}
+}

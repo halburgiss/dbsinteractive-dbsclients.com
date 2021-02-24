@@ -1,0 +1,15 @@
+/* TEAM */
+	DBS>Interactive
+	Making the web a better place since 2000!
+
+	Owner & CEO: Cyndi Masters
+	Contact: cyndi AT dbswebsite.com
+
+	Lead Developer: Hal Burgiss
+	Email: hal AT dbswebsite.com
+	Twitter: @halburgiss
+
+	Developers: 
+	Harold Bradley III
+	Mark Shelton
+	John Golden

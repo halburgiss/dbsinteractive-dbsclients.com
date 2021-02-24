@@ -1,0 +1,119 @@
+/**
+ * Login styles
+ * DBS>Interactive
+ */
+
+$bg-color1: darken(#e9e9e9, 8%);
+$bg-color2: darken(#a8a8a8, 8%);
+$bg-color3: darken(#e9e9e9, 8%);
+$bg-color4: darken(#a8a8a8, 8%);
+
+body.login {
+	background: linear-gradient(143deg, $bg-color1, $bg-color2, $bg-color3, $bg-color4);
+	background-size: 800% 800%;
+	-webkit-animation: bgAnimate 60s ease infinite alternate;
+	-moz-animation: bgAnimate 60s ease infinite alternate;
+	animation: bgAnimate 60s ease infinite alternate;
+}
+
+body.login div#login {}
+body.login div#login h1 {}
+body.login div#login h1 a {
+	background-image: url('../images/site-logo.svg');
+	background-size: contain;
+	width: 100%;
+	margin-bottom: 1em;
+	display: block;
+
+	&:focus {
+		border: none;
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+body.login div#login #login_error {
+	margin-top: 1em;
+}
+
+body.login div#login form#lostpasswordform,
+body.login div#login form#loginform {
+	background: 0;
+	box-shadow: none;
+	margin-top: 0;
+}
+
+body.login div#login form#loginform p {}
+body.login div#login form#lostpasswordform, p label,
+body.login div#login form#loginform p label {
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+body.login div#login form#lostpasswordform input,
+body.login div#login form#loginform input {
+	padding: 0.3em;
+	background: rgba(255,255,255,0.4);
+	border: 1px solid #ffffff;
+	color: #ffffff;
+
+	&:focus {
+		border-color: #ffffff;
+		-webkit-box-shadow: 0 0 2px rgba( 255,255,255, 0.8 );
+		box-shadow: 0 0 2px rgba( 255,255,255, 0.8 );
+	}
+}
+
+body.login div#login input[type="checkbox"]:checked:before {
+	color: #ffffff;
+	content: "\f147";
+	margin: -3px 0 0 -4px;
+}
+
+body.login div#login form#loginform input#user_login {}
+body.login div#login form#loginform input#user_pass {}
+body.login div#login form#loginform p.forgetmenot {}
+body.login div#login form#loginform p.forgetmenot input#rememberme {}
+
+body.login div#login form#loginform p.submit {}
+body.login div#login form#lostpasswordform p.submit input#wp-submit,
+body.login div#login form#loginform p.submit input#wp-submit {
+	padding: 0.3em 1em;
+	text-shadow: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	box-shadow: none;
+	line-height: 0;
+	border-radius: 100px;
+}
+
+body.login div#login p#nav {
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+
+	a { color: #ffffff; }
+}
+
+body.login div#login p#nav {}
+body.login div#login p#nav a {}
+body.login div#login p#backtoblog { display: none; }
+body.login div#login p#backtoblog a {}
+
+@-webkit-keyframes bgAnimate {
+	0% { background-position:14% 0%}
+	50% {background-position:87% 100%}
+	100% {background-position:14% 0%}
+}
+@-moz-keyframes bgAnimate {
+	0% {background-position:14% 0%}
+	50% {background-position:87% 100%}
+	100% {background-position:14% 0%}
+}
+@keyframes bgAnimate {
+	0% {background-position:14% 0%}
+	50% {background-position:87% 100%}
+	100% {background-position:14% 0%}
+}

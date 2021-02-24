@@ -1,0 +1,81 @@
+/**
+ * Theme Variables - colors, font sizes, breakpoint etc.
+ * All the variables will goes here based on project tech specification
+ * DBS>Interactive
+ */
+
+// Colors
+$white: #ffffff;
+$black: #000000;
+$gray: #dadada;
+$grayLighter: #e5e5e5;
+$grayLightest: #f0f0f0;
+$grayDarker: #404144;
+$grayDarkest: #2d2d2d;
+$charcoal: #3b4646;
+
+$primaryColor: $charcoal;
+$secondaryColor: $gray;
+
+// Body Font Vars
+$bodyFont: $font-open-sans;
+$headerFont: $font-open-sans;
+
+$textColor: $grayDarkest;
+$bodyFontSize: 1em;
+$bodyLineHeight: 1.75;
+$ratioScale: 1.314;
+$linkColor: $textColor;
+$dbsOrange: #ed5c41;
+
+// Heading Sizing
+$headingColor: $textColor;
+$headingFontSize: 1em;
+$headingLineHeight: 1.2;
+
+// Layout Vars
+$containSizeMoreNarrow: 50rem;
+$containSizeNarrow: 65rem;
+$containSize: 75rem;
+$containSizeWide: 85rem;
+
+$spacing: 1.5rem;
+$vSpacing: 1rem;
+
+// Media Query Break Points
+$screen-xs:  30.000em;  //  480px
+$screen-sm:  48.000em;  //  768px
+$screen-md:  62.000em;  //  992px
+$screen-lg:  75.000em;  // 1200px
+$screen-xlg: 100.000em; // 1600px
+
+// Max Breakpoints
+$screen-xs-max:  $screen-xs  - .001em;
+$screen-sm-max:  $screen-sm  - .001em;
+$screen-md-max:  $screen-md  - .001em;
+$screen-lg-max:  $screen-lg  - .001em;
+$screen-xlg-max: $screen-xlg - .001em;
+
+$mobileNavBP:    $screen-sm; // Break mobile nav styles
+$mobileNavBPMax: $screen-sm-max;
+
+/**
+ * Type style definitions
+ */
+%default-type {
+	color: $textColor;
+	font-family: $bodyFont;
+	letter-spacing: 0.025em;
+}
+
+%button-type {
+	@extend %default-type;
+	font-weight: bold;
+}
+
+%header-type {
+	color: $headingColor;
+    font-family: $bodyFont;
+	font-weight: bold;
+	line-height: $headingLineHeight;
+}

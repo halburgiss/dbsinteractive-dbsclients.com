@@ -1,0 +1,33 @@
+/**
+ * EXAMPLE PARTIAL: Header with 2 and 3 images
+ * DBS>Interactive
+ */
+ .partial-blog-feed {
+	@include default-margin;
+ 	.latest-news {
+		padding: 0rem 1rem;
+	}
+	.blog-main {
+		@include grid();
+			justify-content: space-between;
+	}
+	.post {
+		display: inline-block;
+		padding: 1rem 0;
+		@include media($screen-xs) {
+			width: 45%;
+		}
+		@include media($screen-sm) {
+			width: 22%;
+		}
+		&:hover {
+			.button--inline:after {
+				transform: translateX(.5em);
+				transition: transform .35s;
+			}
+		}
+	}
+	.latest-news__button {
+		margin-top: 1rem;
+	}
+}

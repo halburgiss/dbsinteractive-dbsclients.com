@@ -1,0 +1,41 @@
+/**
+ * Half and half flex layout
+ * DBS>Interactive
+ */
+
+.half-and-half {
+	&__left,
+	&__right {
+		@include grid(6);  // 2 in a row 6/12 each
+	}
+
+	// Mobile styles
+	@include media ($screen-sm-max, 'max') {
+		flex-wrap: wrap;
+		&__left,
+		&__right {
+			padding-bottom: 0;
+			order: 1;
+			width: 100%;
+
+			// Put halves with images before those without
+			&.bg-img { order: 0; }
+		}
+	}
+
+
+	@include media ($screen-sm) {
+		/**
+		 * This little bit of hackery makes the edge of background images and
+		 * background colors line up with the container content when a contain
+		 * class is on the half and half layout, but not when the
+		 * 'contain-full-width' reset class is used.
+		 */
+		&[class*=contain]:not([class~=contain-full-width]) [class*=bg-] {
+			width: calc( 50% - #{$spacing} );
+
+			&.half-and-half__left { margin-left: $spacing; }
+			&.half-and-half__right { margin-right: $spacing; }
+		}
+	}
+}

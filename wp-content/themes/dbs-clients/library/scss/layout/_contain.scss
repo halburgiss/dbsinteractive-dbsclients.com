@@ -1,0 +1,45 @@
+/**
+ * Slate contain Styles
+ * DBS>Interactive
+ *
+ * This module contains the 3 different sized width contain classes.
+ *
+ * When givin a choice, prefer to use these classnames in the html rather than the constrained-width mixin. This will
+ * help to keep the SCSS files less complicated and more efficient.
+ *
+ * 		contain-narrow
+ * 		contain (contain or contain-medium)
+ * 		contain-wide
+ *
+ * Use the layout classes on the layout div:
+ * 		layout-narrow
+ * 		layout-default
+ * 		layout-wide
+ *
+ * The layout classes will work whether the contain element is the layout itself, or a child of the layout.
+ */
+
+.contain,
+.layout-wide .contain,
+.layout-wide.contain,
+.contain-medium { @include constrained-width($containSize); }
+
+.layout-narrow .contain,
+.layout-narrow.contain,
+.contain-narrow { @include constrained-width($containSizeNarrow); }
+
+.layout-more-narrow .contain,
+.layout-more-narrow.contain,
+.contain-more-narrow { @include constrained-width($containSizeMoreNarrow); }
+
+.layout-wide .contain,
+.layout-wide.contain,
+.contain-wide   { @include constrained-width($containSizeWide); }
+
+// This is used to 'un'contain layouts that are 'contain'ed by default
+.contain-full-width,
+.contain-full-width.contain {
+	margin-left: 0;
+	margin-right: 0;
+	max-width: 100%;
+}

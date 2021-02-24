@@ -1,0 +1,49 @@
+/**
+ * Header styles
+ * DBS>Interactive
+ *
+ * 		site-header - the page's main header element
+ * 			site-header__branding - the company logo
+ * 			site-header__navigation - the site navigation
+ * 				NOTE: Put navigation styles in _navigation.scss.
+ *
+ * ************************************************************************
+ * This file is for the general header/branding styles. For specific
+ * menu/navigation files, use _navigation.scss.
+ * ************************************************************************
+ */
+
+.site-header {
+	background: $grayLighter;
+	position: relative;
+	transition: margin-top .35s 0s; // For accessibility menu transition.
+	z-index: 1;
+
+	h1 { // Offset bottom margin for exact centering
+		padding-top: 1rem;
+	}
+
+	&__container {
+		display: flex;
+			align-items: center;
+			justify-content: space-between;
+		padding: .5em $spacing;
+	}
+
+	/**
+	 * Company logo in site header
+	 */
+	&__branding {
+
+		/**
+		 * Anchor tag that wraps svg element (logo graphic) for site homepage link
+		 */
+		a {
+			display: block;
+			line-height: 0;
+			margin-left: -.25em; // Move the left edge of the logo all the way to the edge of the container
+			max-width: calc(4rem + 10vw); // This makes the logo scale with the screen width.
+			padding: .25em;
+		}
+	}
+}

@@ -1,0 +1,207 @@
+/**
+ * Theme Buttons
+ * DBS>Interactive
+ */
+
+/**
+ * 	Button color variable
+ *	$grayDarkest: #2d2d2d; —— See _vars.scss
+ */
+ $buttonColor: $grayDarkest;
+
+
+/**
+ * Button mixin
+ * @param $color1 - foreground color
+ * @param $color2 - background color
+ */
+@mixin button ($color1, $color2) {
+	@extend %button-type;
+	background-color: $color2;
+	border: 1px solid $color2;
+	color: $color1;
+	display: inline-block;
+	font-weight: normal;
+	letter-spacing: .05em;
+	padding: 0.5em 2.5em;
+	text-decoration: none;
+	transition: all .3s ease;
+	-webkit-appearance: nowrap;
+	white-space: nowrap;
+
+	// Swap the colors on hover
+	&:hover, &:active, &:focus {
+		background-color: $color1;
+		border-color: $color2;
+		color: $color2;
+	}
+}
+
+
+/**
+ *
+ *	CSS Classes (or how to apply the mixin declared above)
+ *   	Overview:
+ *  		There is a .button class
+ *  		There is a modifying .button--ghost class
+ *  			.button--ghost builds on .button by being included after the button class and applying a few overrides to the .button styling.
+ *
+ *  			HTML Example:
+ *  			<a class="button button--ghost" href="#">Example Button</a>
+ *
+ *  	Additional styles can be added on a per project basis. When possible, use the .button--ghost class as an example
+ *  	and build off of the .button class styles; avoid creating a separate class and using @include button(), for this
+ *  	will cause (potential) unnecessary CSS bloat.
+ */
+
+/**
+ *  Button Styling
+ */
+.button,
+.wcag-aaa-light .button {
+	@include button ($white, $buttonColor);
+
+	&.arrow {
+		padding-right: 3.5rem;
+		position: relative;
+
+		&:before,
+		&:after {
+			content: '';
+			height: 1.25rem;
+			width: 1.25rem;
+			position: absolute;
+				top: 50%;
+				right: 1.25rem;
+			transform: translate(0, -50%);
+			transition: .25s ease-in-out;
+		}
+
+		&:before {
+			background: url('/wp-content/themes/slate/library/icons/src/arrow-right-light.svg');
+				background-repeat: no-repeat;
+				background-size: cover;
+			opacity: 1;
+		}
+
+		&:after {
+			background: url('/wp-content/themes/slate/library/icons/src/arrow-right.svg');
+				background-repeat: no-repeat;
+				background-size: cover;
+			opacity: 0;
+		}
+
+		&:hover,
+		&:focus {
+			&:before,
+			&:after { transform: translate(.5rem, -50%); }
+
+			&:before {opacity: 0;}
+			&:after {opacity: 1;}
+		}
+	}
+
+	/**
+	 *  Ghost Button Styling
+	 */
+	&.ghost {
+		background-color: transparent;
+		color: $black;
+		&:hover, &:active, &:focus {
+			background-color: $buttonColor;
+			color: $white;
+		}
+	}
+}
+
+/**
+ *	Button styling on a dark background
+ */
+.bg-dark .button,
+.white-on-black .button {
+	@include button ($buttonColor, $white);
+
+	&.ghost {
+		background-color: transparent;
+		color: $white;
+		&:hover, &:active, &:focus {
+			background-color: $white;
+			color: $black;
+		}
+	}
+
+	&.arrow {
+		padding-right: 3.5rem;
+
+		&:after {
+			background: url('/wp-content/themes/slate/library/icons/src/arrow-right.svg');
+				background-repeat: no-repeat;
+				background-size: cover;
+		}
+
+		&:before {opacity: 0;}
+		&:after {opacity: 1;}
+
+		&:hover,
+		&:focus {
+			&:before {opacity: 1;}
+			&:after {opacity: 0;}
+		}
+	}
+}
+
+/**
+ *	Inline (Arrow) Button Styling
+ */
+.button--inline {
+	color: $textColor;
+	padding-right: 2rem;
+	position: relative;
+	text-decoration: none;
+
+	&:after {
+		background: url('/wp-content/themes/slate/library/icons/src/arrow-right.svg');
+			background-repeat: no-repeat;
+			background-size: cover;
+		content: '';
+		display: inline-block;
+		height: 1.25rem;
+		position: absolute;
+			top: 50%;
+			right: -0;
+		transform: translate(0,-50%);
+		transition: transform .25s ease-in-out;
+		width: 1.25rem;
+	}
+	
+	&:hover, &:focus {
+		color: $textColor;
+
+		&:after {transform: translate(.5em, -50%);}
+	}
+
+	&.back {
+		padding-left: 2rem;
+
+		&:after {
+			left: 0;
+			right: auto;
+			transform: translate(0,-50%) rotate(180deg);
+		}
+
+		&:hover,
+		&:focus {
+			&:after {transform: translate(-.5rem,-50%) rotate(180deg);}
+		}
+	}
+}
+
+.bg-dark .button--inline {
+	color: $white;
+	&:hover, &:focus {
+		color: $white;
+	}
+	&:after {
+		background: url('../../library/icons/src/arrow-right-light.svg');
+	}
+}

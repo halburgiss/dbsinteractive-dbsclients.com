@@ -1,0 +1,18 @@
+/**
+ * Breadcrumb styles
+ * DBS>Interactive
+ */
+
+.breadcrumbs {
+
+	&__item {
+
+		&:after { content: '›'; }
+
+		&--current {
+
+			&:after { content: ''; }
+
+		}
+	}
+}

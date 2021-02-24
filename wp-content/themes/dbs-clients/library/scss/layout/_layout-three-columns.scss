@@ -1,0 +1,34 @@
+/**
+ * Three Columns Flex Layout
+ * DBS>Interactive
+ */
+
+.three-columns {
+	.column {
+		@include grid(12);  // 1 in a row 12/12 each
+
+		@media screen and (min-width: $screen-sm) and (max-width: $screen-md-max){
+			display: flex;
+			& > * { width: 50%; }
+		}
+
+		@include media ($screen-md) {
+			@include grid(4);  // 2 in a row 6/12 each
+		}
+	}
+
+	@include media ($screen-md) {
+		/**
+		 * This little bit of hackery makes the edge of background images and
+		 * background colors line up with the container content when a contain
+		 * class is on the half and half layout, but not when the
+		 * 'contain-full-width' reset class is used.
+		 */
+		&[class*=contain]:not([class~=contain-full-width]) [class*=bg-] {
+			&.column:first-of-type,
+			&.column:last-of-type { width: calc(33.3333% - #{$spacing}); }
+			&.column:first-of-type { margin-left: $spacing; }
+			&.column:last-of-type { margin-right: $spacing; }
+		}
+	}
+}

@@ -1,0 +1,73 @@
+/**
+ * EXAMPLE PARTIAL: Big Number List
+ * DBS>Interactive
+ */
+
+.partial-big-number-list {
+	border-top: 1px solid $grayLighter;
+	@include default-margin;
+	.container {
+		@include grid();
+		@include default-padding;
+	}
+	.number-section {
+		@include media($screen-sm) {
+			@include grid(8);
+		}
+
+
+		ul {
+			counter-reset: li;
+		}
+
+		li {
+			@include cell-space-between;
+
+			counter-increment: li;
+			list-style-type: none;
+			margin-right: $spacing * 3;
+			position: relative;
+
+			&:last-of-type {
+				margin-right: $spacing * 3;
+			}
+
+			&:before {
+				@include font-scale(4);
+
+				content: counter(li);
+				font-weight: bold;
+				line-height: 1.25em;
+				position: absolute;
+					top: 0;
+					right: calc(100% + .5em);
+			}
+		}
+	}
+
+	.sidebar-section {
+		@include media($screen-sm) {
+			@include grid(4);
+			border-left: 1px solid $grayLighter;
+			margin-top: $spacing;
+			margin-bottom: $spacing;
+		}
+
+
+		.top-section {
+			@include cell-space-between;
+
+			border-bottom: 1px solid $grayLighter;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-right: 0;
+		}
+
+		.bottom-section {
+			@include cell-space-between;
+
+			margin-bottom: 0;
+			padding-right: 0;
+		}
+	}
+}

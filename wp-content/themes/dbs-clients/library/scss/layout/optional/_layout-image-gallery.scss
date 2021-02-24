@@ -1,0 +1,150 @@
+/**
+ * Image Grid (with sidebar)
+ * DBS>Interactive
+ *
+ * ACF Special Classes styled by this stylesheet:
+ *		.light-box (Light Box)
+ *		.image-zoom (Image Zoom)
+ *
+ * Note: The .light-box class included later in this stylesheet
+ * 		cooresponds with functionality included in lightbox/lightbox.js
+ */
+$textMaxInnerWidth: 35em; // For text areas such as half and half layouts and such kind a other layout which have a full width container
+
+//
+.image-gallery {
+
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		@include media($screen-md){
+			flex-direction: row;
+		}
+	}
+
+	&__content {
+		padding: $spacing;
+		@include media($screen-md){
+			width: 50%;
+			display: inline-flex;
+		}
+
+		.inner {
+			max-width: $textMaxInnerWidth;
+			margin: 0 auto;
+			align-self: center;
+		}
+		& + .image-gallery__images { // If content (callout) is in use, limit width of the image container
+			@include media($screen-md){
+				width: 50%;
+			}
+		}
+	}
+
+	&__images {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	//Individual image
+	&__image {
+		border: .1em solid $white;
+		box-shadow: 0 0;
+		height: 0;
+		padding: 0; // overrides default padding on button elements
+		padding-bottom: 66%;
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+
+		@include media($screen-sm) {
+			@include grid(6); // Two up since 6/12 = 2
+			padding-bottom: 35%;
+		}
+
+		@include media($screen-md) {
+			@include grid(4); // Three up since 4/12 = 3
+			padding-bottom: 25%;
+		}
+
+		@include media($screen-md) {
+			@include grid(3); // Four up since 3/12 = 4
+			padding-bottom: 20%;
+		}
+
+		img {
+			@include object-fit(cover, center);
+		}
+	}
+}
+ 
+ 
+// If the acf class 'Light Box (.light-box)' is added via the CMS...
+.individual-lightbox {
+	display: none;
+	height: 100%;
+		width: 100%;
+	position: absolute;
+		left: 0;
+		top: 0;
+	z-index: 9999;
+
+	&.opened-box { // Display the lightbox
+		display: inline-block;
+	}
+
+	.backDrop {
+		background: #000;
+		height: 100%;
+		position: fixed;
+			top: 0;
+			left: 0;
+		width: 100%;
+		opacity: .8;
+	}
+
+	.image-container {
+		background: $white;
+		border: .75rem solid $white; // Provides buffer around image to keep from overlapping with the close button. Note: this does not apply to the model page galleries (see below)
+		display: flex;
+			flex-direction: column;
+		max-width: 60rem;
+		position: fixed;
+			left: 50%;
+			top: 50%;
+		transform: translate(-50%,-50%);
+		width: calc(100% - 3rem);
+	}
+
+	.close-lightbox { // Button
+		background: url('../icons/src/close-symbol.svg') no-repeat center;
+			background-size: 2rem;
+		background-color: $white;
+		border: none;
+		font-size: 2.25em;
+		height: 2em;
+		width: 2em;
+		position: absolute;
+			right: -.75rem;
+			top: -.75rem;
+	}
+
+	.largeImage {
+		max-height: 80vh;
+		width: 100%;
+	}
+
+	.lightbox-caption {
+		background: rgba(0,0,0,.9);
+		color: $white;
+		padding: 1em;
+		width: 100%;
+	}
+
+	.contain-size { // Applied when the screen height is less than 500px
+		.lightbox-caption {
+			display: none;
+		}
+	}
+}

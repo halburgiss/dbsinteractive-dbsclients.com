@@ -1,0 +1,110 @@
+/**
+ * DBS>Interactive
+ * General Theme Type classes
+ * These classes are generic repeatable patterns of type styles that can be
+ * extended by other classes to maintain consistency throughout the theme.
+ *
+ * Recommended usage:
+ * 		@extend %button-type;
+ */
+
+
+/**
+ * Default Typography
+ */
+html {
+	@extend %default-type;
+
+	@media (min-width: $screen-sm) {
+		font-size: $bodyFontSize * 0.95;
+	}
+	@media (min-width: $screen-md) {
+		font-size: $bodyFontSize;
+	}
+	@media (min-width: ($screen-md + $screen-md * .5)) {
+		font-size: $bodyFontSize * 1.1;
+	}
+}
+
+body {
+	@extend %default-type;
+	font-size: $bodyFontSize;
+	font-weight: 400;
+	line-height: $bodyLineHeight;
+}
+
+
+nav {
+	@extend %header-type;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	@extend %header-type;
+	margin-top: 0;
+	margin-bottom: $vSpacing * 1;
+	text-rendering: optimizeLegibility;
+
+	a { text-decoration: none; }
+}
+
+
+.h1, h1 { @include font-scale( 5, $headingFontSize); }
+.h2, h2 { @include font-scale( 4, $headingFontSize); }
+.h3, h3 { @include font-scale( 3, $headingFontSize); }
+.h4, h4 { @include font-scale( 2, $headingFontSize); }
+.h5, h5 { @include font-scale( 1, $headingFontSize); }
+.h6, h6 { @include font-scale( 0, $headingFontSize); }
+
+
+a {
+	color: $linkColor;
+	font-weight: bold;
+	text-decoration: underline;
+	transition: color ease-in-out 0.25s;
+	&:hover, &:focus, &:active { color: darken($linkColor, 10%); text-decoration: none;}
+}
+
+.bg-dark a {
+	color: $white;
+	&:hover, &:focus, &:active { color: darken($white, 10%); }
+}
+
+
+p {
+	margin-top: 0;
+	margin-bottom: $spacing;
+}
+
+.dropcap {
+	color: $primaryColor;
+	float: left;
+	font-size: 6.25em;
+	font-weight: 400;
+	line-height: 90px;
+	margin-bottom: -.031em;
+	margin-top: .03em;
+	padding-right: .5rem;
+}
+
+.font_small,
+small { font-size: 0.707em; }
+
+// Color Classes
+.white {color: $white !important;}
+.black {color: $black !important;}
+
+// Type Style Classes
+.caps {text-transform: uppercase;}
+.underline {text-decoration: underline;}
+
+// Alignment Classes
+.text-center {text-align: center;}
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+
+// Font Weight Classes
+.normal {font-weight: 400;}
+.semi-bold {font-weight: 600;}
+.bold {font-weight: 700;}
+.extra-bold {font-weight: 900;}

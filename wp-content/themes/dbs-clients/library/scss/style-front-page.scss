@@ -1,0 +1,31 @@
+/**
+ * DBS Slate Front Page Stylesheet
+ * DBS>Interactive
+ *
+ * This stylesheet will only be loaded on the front page.
+ */
+
+// Mixins
+@import "mixins/mixins";
+@import "mixins/layout";
+
+// Required Variables and definitions
+@import "base/font";
+@import "base/vars";
+
+// Layout Styles
+@import "layout/layout-default";
+@import "layout/layout-flex-blocks";
+@import "layout/layout-half-and-half";
+@import "layout/layout-full-width";
+@import "layout/layout-three-columns";
+@import "layout/layout-four-columns";
+@import "layout/layout-page-header";
+@import "layout/layout-slider";
+
+// Optional Layouts (See /scss/layout/optional and /scss/layout/partials for additional layouts)
+
+// Components
+
+// Pages
+@import "page/frontpage";

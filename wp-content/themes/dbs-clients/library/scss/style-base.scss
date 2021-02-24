@@ -1,0 +1,41 @@
+/**
+ * DBS Slate Base Stylesheet
+ * DBS>Interactive
+ *
+ * This stylesheet will be loaded on all pages except AMP enabled pages.
+ */
+
+// Vendor Based Styles
+@import "vendors/flickity/flickity";
+@import "vendors/normalize/normalize";
+
+// Mixins
+@import "mixins/mixins";
+@import "mixins/layout";
+
+// Required Variables and definitions
+@import "base/font";
+@import "base/vars";
+
+// Base Styles
+@import "base/general";
+@import "base/type";
+
+// Layout Styles
+@import "layout/contain";
+@import "layout/layout";
+@import "layout/layout-classes";
+
+// Accessibility
+@import "accessibility/wcag-menu";
+@import "accessibility/prevent-animations";
+
+// Components
+@import "components/buttons";
+@import "components/cookie-popup";
+@import "components/header";
+@import "components/navigation";
+@import "components/dbs-chevron";
+@import "components/footer";
+@import "components/search";
+@import "components/sidebar";

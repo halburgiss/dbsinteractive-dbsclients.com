@@ -1,0 +1,22 @@
+/**
+* @file dbs.css
+*
+* Primarily used for branding / de-branding in the admin.
+* @author Hal Burgiss
+*/
+#header-logo,#footer-upgrade,span.turbo-nag,#wp-version-message,li#wp-admin-bar-wp-logo { display:none }
+.dbs_admin_footer a {font-size:16px!important;font-weight:bold!important;}
+li#wp-admin-bar-wp-logo, .hide-if-no-customize {display:none;}
+div[id*="_recent-comments-__i__"],div[id*="_archives-__i__"],div[id*="_categories-__i__"],div[id*="_search-__i__"],div[id*="_rss-__i__"] {
+	height:0!important; width:0;display:none;
+}
+
+#dashboard_php_nag {display:none;}
+
+/* example for hiding unwanted admin features:
+body.post-type-event #wpseo_meta, body.post-type-event #edit-box-ppr,  body.post-type-event #dynwid {
+     display: none;
+}
+*/
+
+

@@ -1,0 +1,56 @@
+/*
+* WCAG Menu option. Turn off non-essential animations.
+* Essentially, everything except the slider, since that will break.
+*/
+
+body.prevent-animations  {
+
+	// CSS properties found and taken from a comment on: https://stackoverflow.com/questions/11131875/what-is-the-cleanest-way-to-disable-css-transition-effects-temporarily/16575811
+
+	.wcag-button__prevent-animations {
+		transition: all .35s linear;
+		opacity: .3;
+	}
+
+	a,
+	button,
+	span,
+	li,
+	svg,
+	svg path,
+	header,
+	footer,
+	input,
+	section,
+	textarea,
+	select,
+	:before,
+	:after,
+	.wcag-wrapper {
+		-o-transition-property: none !important;
+		-moz-transition-property: none !important;
+		-ms-transition-property: none !important;
+		-webkit-transition-property: none !important;
+		 transition-property: none !important;
+
+		 /*CSS animations*/
+		  -webkit-animation: none !important;
+		  -moz-animation: none !important;
+		  -o-animation: none !important;
+		  -ms-animation: none !important;
+		  animation: none !important;
+	}
+
+	div {
+		-o-transition-property: none !important;
+		-moz-transition-property: none !important;
+		-ms-transition-property: none !important;
+		-webkit-transition-property: none !important;
+		 transition-property: none !important;
+	}
+
+	// Remove press animation from flickity-button
+	.flickity-button:active {
+		transform: none !important;
+	}
+}

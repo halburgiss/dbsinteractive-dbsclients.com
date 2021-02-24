@@ -1,0 +1,226 @@
+/**
+ * Global Mixins
+ * DBS>Interactive
+ */
+
+@mixin media( $bp, $determinate: min, $direction: width ) {
+	@media screen and ( #{$determinate}-#{$direction}: $bp ) { @content; }
+}
+
+
+/**
+ * Helpful mixin for font size scaling.
+ *
+ * Decimal values should not be used here!
+ * The results will not be what you'd expect.
+ *
+ * @usage
+ * 		@include font-scale(-1) - smaller
+ * 		@include font-scale(0) = 1em (.8em in mobile)
+ * 		@include font-scale(1) - larger
+ * 			etc...
+ */
+@mixin font-scale($number: 0, $baseSize: $headingFontSize) {
+	$size: pow($ratioScale, $number) * $baseSize;
+	font-size: $size * .8;
+	@media (min-width: $screen-sm) { font-size: $size; }
+}
+
+
+/**
+ * Fixes clear bug in certain situations
+ *
+ * @group layout
+ * @link http://fuseinteractive.ca/blog/understanding-humble-clearfix#.VJ853sAEo Understanding the humble clearfix
+ * @example scss - Usage
+ *   @extend clearFix; // That's It!
+ */
+%clearFix, .clearfix{
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+
+/**
+ * An easy way to truncate text with an ellipsis. Requires the element to be block or inline-block.
+ *
+ * @group Typography
+ * @link http://web-design-weekly.com/2013/05/12/handy-sass-mixins/ Handy Sass Mixins
+ * @example scss - Usage
+ *   .text-truncate {
+ *	  @extend text-truncate;
+ *   }
+ */
+%text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/**
+ * Hide On Breakpoint
+ *
+ * @param {Variable} $bp - Breakpoint variable, ie $largeScreen
+ * @param {String} $determinate ('min') - Whether it is max-width or min-width based
+ * @group General
+ * @link https://github.com/GumbyFramework/Gumby/blob/master/sass/functions/_visibility.scss Gumby Framework
+ * @example scss - Basic Usage
+ *   .class{
+ *	  @include hideOn($largeScreen);
+ *   }
+ *
+ * @example scss - Reversed Determinate
+ *   @include hideOn($baby, 'max');
+ */
+@mixin hideOn($bp, $determinate: min ) {
+	@include break($bp, $determinate) {
+		display: none !important;
+	}
+}
+
+
+/**
+ * Show On Breakpoint
+ *
+ * @param {Variable} $bp - Breakpoint variable, ie $largeScreen
+ * @param {String} $determinate ('min') - Whether it is max-width or min-width based
+ * @group General
+ * @link https://github.com/GumbyFramework/Gumby/blob/master/sass/functions/_visibility.scss Gumby Framework
+ * @example scss - Basic Usage
+ *   .class{
+ *	  @include showOn($largeScreen);
+ *   }
+ *
+ * @example scss - Reversed Determinate
+ *   @include showOn($baby, 'max');
+ */
+@mixin showOn($bp, $determinate: min) {
+	@include break($bp, $determinate) {
+		display: inherit !important;
+	}
+}
+
+
+/**
+ * Size mixin - Sets width and height.
+ *
+ * When only one argument is specified, both the height and width are set to the same value.
+ *
+ * @param width - required
+ * @param height
+ */
+@mixin size($width, $height: $width) {
+	height: $height;
+	width: $width;
+}
+
+
+/**
+ * REFLEX ISH GRID
+ */
+
+@function maxGrid($columns){
+	@return ( ($columns / 12) * $containSize );
+}
+@mixin grid($columns: 'row', $margin: ''){
+	@if $columns == 'row' {
+		display: inline-block;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		*display: inline;
+		zoom: 1;
+		-ms-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
+		flex-direction: row;
+
+		// .grid {
+		// 	-ms-flex: 1 1 auto;
+		// 	-webkit-flex: 1 1 auto;
+		// 	flex: 1 1 auto;
+		// }
+	} @else {
+		$width: percentage(($columns / 12));
+		@if $margin == '' {
+			width: $width;
+		} @else {
+			width: calc(#{$width} - #{$margin});
+		}
+	}
+}
+
+
+/**
+ * Exponent function
+ *
+ * NOTE: This does NOT work for decimal values
+ *
+ *   @see: https://css-tricks.com/snippets/sass/power-function/
+ */
+@function pow($number, $exponent) {
+	$value: 1;
+
+	@if $exponent > 0 {
+		@for $i from 1 through $exponent {
+			$value: $value * $number;
+		}
+	} @else if $exponent < 0 {
+		@for $i from 1 through -$exponent {
+			$value: $value / $number;
+		}
+	}
+
+	@return $value;
+}
+
+
+
+/**
+ * Object Fit
+ *
+ * If a browser supports object-fit it will use it with the params
+ * given. Otherwise it will fall back on a more basic image centering method.
+ *
+ * @param size - required (cover, contain, auto, etc.)
+ * @param position - required (center, left, right, top, bottom right, etc.)
+ */
+@mixin object-fit( $size, $position ) {
+	height: auto;
+	position: absolute;
+		top: 50%;
+		left: 50%;
+	transform: translate(-50%,-50%);
+	width: 100%;
+
+	@supports ( object-fit: contain ) {
+		height: 100%;
+		object-fit: $size;
+	}
+}
+
+
+/**
+ * Aspect Ratio
+ *
+ * Used to create a padding box that an image/video can be placed in.
+ *
+ * Example @include aspect-ratio(16, 9);
+ */
+@mixin aspect-ratio($width, $height) {
+	height: 0;
+	overflow: hidden;
+	padding: ($height / $width) * 100% 0 0;
+	position: relative;
+
+	img, video, iframe {
+		@include object-fit( cover, center );
+	}
+}

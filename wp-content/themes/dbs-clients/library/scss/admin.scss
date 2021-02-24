@@ -1,0 +1,64 @@
+/**
+ * DBS Slate WP Admin Stylesheet
+ * DBS>Interactive
+ */
+
+.acf-flexible-content .layout {
+
+	border-color: #0073aa;
+	margin-bottom: 3em;
+
+	.acf-fc-layout-order {
+		background-color: #fff;
+		color: #0073aa;
+	}
+
+	.acf-fc-layout-controlls .acf-icon.-collapse {
+		&:hover { background-color: #dfdfdf; }
+	}
+
+	.acf-fc-layout-handle {
+		background-color: #0073aa;
+		color: #fff;
+	}
+
+
+	// Nested Layouts
+	.layout {
+		border-color: #005075;
+
+		.acf-fc-layout-handle { background-color: #005075; }
+	}
+}
+
+.acf-fields > .acf-field {
+	border-top-width: .25em;
+	padding: 2em;
+}
+
+.acf-table {
+	border-collapse: collapse;
+	.acf-field-setting-fc_layout {
+		border: 3px solid #555;
+		border-right: none;
+		border-left: none;
+
+		& > td.acf-label {
+			color: #555;
+		}
+
+		&.acf-field > td.acf-input {
+			padding: 5em 2em;
+		}
+
+		.acf-field-list-wrap {
+			border: 1px solid #555;
+			margin: 4em 0;
+		}
+	}
+}
+
+.acf-fields > .acf-field.fake-seamless { padding: 0; }
+.acf-field.fake-seamless > .acf-label { margin: 0; }
+.acf-field.fake-seamless > .acf-label label { display: none; }
+.fake-seamless .acf-clone-fields { border: none; }

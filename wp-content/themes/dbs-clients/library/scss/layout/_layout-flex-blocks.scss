@@ -1,0 +1,24 @@
+/**
+ * Flex Blocks Layout
+ * DBS>Interactive
+ */
+.flex-blocks {
+
+	&__content {
+		display: flex;
+			flex-wrap: wrap;
+	}
+
+	.cell {
+		padding-top: 1em;
+		width: 100%;
+
+		@include media ($screen-sm) {
+			width: 50%;
+		}
+
+		@include media ($screen-md) {
+			width: 33.33%;
+		}
+	}
+}

@@ -1,0 +1,145 @@
+/**
+ * Slider ACF Layout Styles
+ * DBS>Interactive
+ */
+
+.layout-slider {
+	overflow: visible;
+	padding: 0em $spacing;
+}
+
+.slider-layout__wrapper {
+	margin: 0rem auto;
+	max-width: $containSize;
+	overflow: hidden;
+	position: relative;
+}
+
+.slider-cell {
+	min-height: 100%;
+	width: 100%; // Set number of visible slides by width percentage. This is one slide.
+
+	// Styles for a "background" style image with text overlay
+	&.image-slide {
+		.slider-cell__image {
+            height: 100%;
+            position: absolute;
+			width: 100%;
+			z-index: 1;
+
+			img {
+				@include object-fit(cover, center);
+			}
+		}
+
+		.slider-cell__content {
+			position: relative;
+			z-index: 2;
+
+			h2, h3, h4, h5, p, a {color: $white;}
+		}
+	}
+
+    &.bg-overlay:after {
+        z-index: 1;
+    }
+
+	&__content {
+		padding: $spacing;
+	}
+}
+
+// Nav buttons
+.flickity-button {
+
+}
+
+// Slider Styles
+.slide-wrapper {
+    overflow: hidden;
+    width: 98%;
+    margin: 0 auto;
+    margin-bottom: 1%;
+    @include media($screen-md) {
+        margin-bottom: 0;
+        width: 100%;
+    }
+}
+
+.slide__image {
+    overflow: hidden;
+    padding: 42%;
+    min-height: 6em;
+
+    @include media($screen-md) {
+        padding: 30%;
+    }
+
+    img {
+        position: absolute;
+            left: 0;
+            top: 0;
+    }
+}
+
+.flickity-page-dots {
+    display: flex;
+        align-items: center;
+        justify-content: center;
+    position: relative;
+}
+
+.button-group {
+    display: flex;
+        align-items: center;
+            justify-content: center;
+}
+
+// white circle styles for the dots
+button.dot {
+    border-radius: 100%;
+    width: .75em;
+    height: .75em;
+    padding: 0;
+    margin: 0em .75em;
+    opacity: 1;
+    background: transparent;
+    transform: scale(1);
+    border: .1em solid $white;
+
+    &:focus, &:hover,
+    &.is-selected {
+        background-color: $black;
+        border-color: $white;
+        transform: scale(1.5);
+        transition: transform .25s linear;
+    }
+}
+
+// Pause/Start button styles
+// .pause-start-slider {
+//     background: none;
+//     border: none;
+//     margin: 0.5em .5em;
+//     height: 2em;
+//     width: 2em;
+//     position: relative;
+
+//     &:after {
+//         position: absolute;
+//         top: 50%;
+//         left: 50%;
+//         transform: translate(-50%,-50%);
+//         content: url("../icons/src/pause-symbol.svg");
+//     }
+
+//     &.slider-paused:after,
+//     &.slider-paused-from-control:after {
+//         content: url("../icons/src/play-symbol.svg");
+//     }
+
+//     &:focus, &:hover {
+//         transition: transform .25s ease-in-out;
+//         transform: scale(1.2);
+//     }
+// }

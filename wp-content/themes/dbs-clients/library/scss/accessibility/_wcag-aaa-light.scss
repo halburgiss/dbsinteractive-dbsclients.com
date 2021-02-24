@@ -1,0 +1,69 @@
+/**
+*
+* WCAG Contrast Option: Light
+*
+* Accessibility Menu style sheet (current file): _wcag-aaa-light.scss
+*
+* Other important Accessibility Menu files:
+* 	Accessibility Menu HTML - see header.php
+* 	Accessibility JS Functionality - see scripts.js and style-selector.js
+*
+* As part of our committment to internet accessibility, DBS Interactive has
+* developed a site accessibility menu that goes beyond WCAG Web Content
+* Accessibility Guidelines - https://www.w3.org/TR/WCAG21/.
+*
+* This file controls the styling for the dark contrast view (white backgrounds
+* and black text).  When selected in the Accessbility Menu, a cookie is stored
+* to remember the styling in this file.  A reset button is available in the
+* menu to remove these styles.
+*
+*/
+
+body.wcag-aaa-light {
+	color: #000000 !important;
+	background-color: #ffffff !important;
+
+	h1, h2 ,h3, h4, h5, h6, p, a, strong, label, .site-header, footer, .wcag-button, .wcag-button__close, .wcag-panel, .wcag-wrapper, .validation_message, .validation_error, .button, form input, form textarea,
+	form input::placeholder, form textarea::placeholder, .flickity-button {
+		color: #000000 !important;
+		background-color: #ffffff !important;
+		font-weight: bold;
+	}
+
+
+	.flickity-page-dots .is-selected {
+		background: #00f !important;
+	}
+
+	// Fill colors for event icons
+	svg path { fill: #000000 !important; }
+
+	.button,
+	.wcag-panel button,
+	.wcag-button__close,
+	.flickity-button:after,
+	form input,
+	form textarea,
+	blockquote,
+	.pagination__link,
+	.validation_error {
+		border-color: #000000 !important;
+	}
+
+	.menu-toggle span,
+	.button:focus,
+	.button:hover,
+	.gform_button:active,
+	.gform_button:focus,
+	.gform_button:hover,
+	.pagination__current,
+	.wcag-button__wcag-aaa-dark {
+		background-color: #000000 !important;
+		color: #ffffff !important;
+	}
+
+	// Change accessibility icons to make visible on white background
+	.wcag-button__open:after {
+        content: url("../../../library/images/accessibility-light.svg");
+	}
+} //End of black and white

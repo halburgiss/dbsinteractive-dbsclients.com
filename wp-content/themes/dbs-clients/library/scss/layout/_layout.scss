@@ -1,0 +1,56 @@
+/**
+ * Default layout styles
+ * DBS>Interactive
+ */
+
+/**
+ * Main site wrapper
+ */
+.site {
+	display: flex;
+		flex-direction: column;
+	min-height: 100vh;
+	overflow: hidden;
+	position: relative;
+
+	&-content {
+		clear: both;
+	}
+}
+
+
+/**
+ * Basic generic styles for all layouts
+ */
+.layout {
+	@include default-margin;
+
+	.contain {
+		@include default-padding;
+	}
+
+	.cell {
+		padding: $spacing;
+
+		@include media ($screen-sm) {
+			padding: 0 $spacing $spacing;
+		}
+	}
+
+	// Add cell padding to top and bottom when it has a background (bg-img, bg-light, bg-dark).
+	& [class*=bg-] .cell {
+		@include media ($screen-sm) {
+			padding: $spacing;
+		}
+	}
+
+	&.columns {
+		@include default-margin;
+		display: flex;
+			flex-wrap: wrap;
+	}
+
+	.column {
+		position: relative;
+	}
+}

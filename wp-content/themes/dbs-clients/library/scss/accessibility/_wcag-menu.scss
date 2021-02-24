@@ -1,0 +1,218 @@
+/**
+ * WCAG Menu
+ * DBS>Interactive
+ */
+$accessibility_menu_height: 100vh;
+
+body.accessibility-menu-opened { // Prevent scrolling behind the menu if opened
+	overflow: hidden;
+}
+
+.wcag-panel {
+	background : rgba($grayDarker, .98);
+	box-shadow : 0 4px 20px -8px $black;
+	display    : flex;
+		align-items: center;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	font-size  : 1rem;
+	font-weight: 700;
+	height     : $accessibility_menu_height;
+	margin     : -$accessibility_menu_height auto 0;
+	overflow: scroll;
+	position   : fixed;
+		left       : 0;
+		right      : 0;
+		top        : 0;
+	text-align : center;
+	transition : margin-top 0.5s 0s, visibility 0s 0.5s;
+	visibility : hidden;
+	z-index    : 1;
+
+	.accessibility-menu-opened & {
+		margin-top: 0;
+		transition: margin-top 0.5s 0s, visibility 0s 0s;
+		visibility: visible;
+		// Add margin to the header to make room for the accessibility menu
+		@at-root .accessibility-menu-opened .site-header {
+			margin-top: $accessibility_menu_height;
+		}
+	}
+
+	.wcag-panel-title { // h2
+		color: $white;
+		width: 100%;
+	}
+
+	.wcag-panel-control-set-list {
+		list-style: none;
+		padding-left: 0;
+	}
+	.wcag-panel-main-controls {
+		display: flex;
+			align-items: center;
+    		justify-content: center;
+			flex-wrap: wrap;
+		margin: 0 auto;
+
+		.wcag-panel-control-set {
+
+			&-title {
+				color: $white;
+			}
+
+			&.contrast-options,
+			&.font-size-options,
+			&.additional-options {
+				padding: 1em;
+			}
+
+
+			&.contrast-options,
+			&.font-size-options {
+				width: 100%;
+				@include media($mobileNavBP) {
+					width: auto;
+				}
+			}
+
+			&.additional-options {
+				width: 100%;
+				.wcag-panel-control-set-list {
+					align-items: space-around;
+				}
+				.wcag-panel-control-set-item {
+					width: auto;
+				}
+			}
+			&.additional-resources {
+				width: 100%;
+				.wcag-panel-control-set-list { // ul
+					display: flex;
+						align-items: center;
+						flex-direction: column;
+					list-style: none;
+					margin-bottom: 0; // removes default bottom margin
+					.wcag-panel-control-set-item { // li
+						padding: 0em;
+						a {
+							color: $white;
+							font-weight: 400;
+						}
+					}
+				}
+			}
+		}
+
+		.wcag-panel-control-set-list {
+			display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				justify-content: center;
+
+			.wcag-panel-control-set-item {
+				padding: 1em;
+			}
+		}
+	}
+
+	:focus {
+		box-shadow: 0 0 0 0.35em $white;
+	}
+}
+
+/**
+ * wcag button styles
+ */
+.wcag-button {
+	background-color: $white;
+	border: 1px solid $grayDarker;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+
+	// For buttons that have an after element
+	&:after {
+		font-size: 2em;
+		position : absolute;
+		left     : 50%;
+		top      : 50%;
+		transform: translate(-50%,-50%);
+	}
+
+	&__decrease-font-size,
+	&__increase-font-size,
+	&__aaa-dark-contrast,
+	&__aaa-light-contrast {
+		border-radius: 100%;
+		border       : 1px solid $black;
+		color        : $black;
+		height: 3em; // fixed height on our round buttons
+		width: 3em; // fixed width on our round buttons
+		position     : relative;
+	}
+
+	&__aaa-dark-contrast:after,
+	&__aaa-light-contrast:after {
+		content: "A";
+	}
+
+	&__aaa-dark-contrast {
+		background: black !important;
+		color: $white !important;
+	}
+
+	&__increase-font-size:after {
+		content  : "\002B";
+		display: block;
+	}
+
+	&__decrease-font-size:after {
+		content  : "\2212";
+		display: block;
+	}
+
+	&__prevent-animations,
+	&__reset-accessibility,
+	&__disable-stylesheet {
+        background: $white;
+		border    : 1px solid $black;
+		width     : 100%;
+		padding: 1em 2em;
+    }
+
+	&__open {
+		background: 0 0;
+		border    : none;
+		padding: 1em;
+		&:after {
+			background: url("../../library/images/accessibility-light.svg") no-repeat center;
+				background-size: contain;
+			content: '';
+			height: 100%;
+			width: 2em;
+		}
+
+		@include media($mobileNavBP) {
+			align-self: end;
+			height: 2em;
+			margin: 0 0 0 auto;
+			z-index: 101;
+		}
+	}
+
+	&__close {
+		height: auto;
+		padding: 1em;
+		position: relative;
+		display: inline-block;
+		@include media($mobileNavBP) {
+			position: absolute;
+				top: 0;
+		}
+
+		&:after {
+			content: "X";
+		}
+	}
+}

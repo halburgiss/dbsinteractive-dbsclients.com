@@ -1,0 +1,136 @@
+/**
+ * Extended attribute classes for Flex Layouts
+ * DBS>Interactive
+ */
+
+
+// Background colors and images
+
+.bg-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	position: relative;
+
+	// Background image wrapper/tag styles
+	& > .image-wrapper {
+		height: 100%;
+		position: absolute;
+			top: 0;
+			left: 0;
+		width: 100%;
+		z-index: -1;
+
+		& img {
+			@include object-fit(cover, center);
+		}
+	}
+
+	// Adds a bit of breathing room above and below the layout container
+	& > .contain {
+		padding-top: $spacing * 2;
+		padding-bottom: $spacing * 2;
+	}
+
+	// Brightens the text when a background image is present
+	h1, h2, h3, h4, h5, h6, p {
+		color: $white;
+	}
+}
+
+
+.bg-dark {
+	background-color: $grayDarkest;
+	&, h1, h2, h3, h4, h5, h6 {
+		color: $white;
+	}
+}
+
+
+.bg-light {
+	background-color: $gray;
+}
+
+
+// Adds an overlay to the background image to allow content to pop
+.bg-overlay {
+	.cell, .contain {
+		position: relative;
+		z-index: 1;
+	}
+
+	&:after {
+		background: rgba($black, 0.7);
+		content: '';
+		height: 100%;
+		position: absolute;
+			left: 0;
+			top: 0;
+		width: 100%;
+	}
+}
+
+.no-bottom-margin {
+	margin-bottom: 0 !important;
+}
+
+.no-top-margin {
+	margin-top: 0 !important;
+}
+
+
+// Thumbnail cell image styles
+.thumbnail {
+	.column {
+		display: flex;
+			align-items: center;
+
+		// The column gets the padding for this style.
+		padding: 1em;
+		@include media ($screen-sm) {
+			padding: 0 $spacing $spacing;
+		}
+
+		// Give margin-right to the first item (image or content)
+		& > :first-child { margin-right: $spacing; }
+	}
+
+	.cell {
+		flex: 1;
+		padding: 0; // The column gets the padding for this style.
+	}
+
+	.image-wrapper {
+		height: 0;
+		padding-top: 5em;
+		overflow: hidden;
+		position: relative;
+		width: 6em;
+
+		img {
+			height: 100%;
+			max-width: initial;
+			position: absolute;
+				left: 50%;
+				top: 50%;
+			transform: translate(-50%,-50%);
+			width: auto;
+		}
+	}
+}
+
+
+// Image Card cell layout
+.image-card {
+	.image-wrapper {
+		margin: 0 $spacing $spacing $spacing;
+		margin-right: $spacing;
+		max-height: 20em;
+		overflow: hidden;
+
+		img {
+			height: 100%;
+		}
+	}
+}

@@ -1,0 +1,49 @@
+/**
+ *	Styles for the sidebar layout
+ *
+ *	This stylesheet properties only for layout-content_with_sidebar
+ *		blog page has it's own stylesheet for sidebar
+ *	[-If you want to make it global you can do it so-]
+ */
+
+.layout-content-with-sidebar.active-sidebar {
+
+	.contain {
+		display: flex;
+			flex-direction: column;
+
+		@include media($screen-lg){
+			flex-direction: row;
+		}
+	}
+
+	.content {
+		@include media($screen-lg){
+			width: 70%;
+		}
+
+		& > .layout:first-child {
+			margin-top: 0rem; // Keeps spacing between layouts consistent, when the margin around the entire content with sidebar layout is considered
+		}
+
+		.layout {
+			&:last-child {margin-bottom: 0;}
+
+			.contain, // Removes redundant padding
+			&.contain {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		.half-and-half__left.bg-img {margin-left: 0; width: 50%;}
+		.half-and-half__right.bg-img {margin-right: 0; width: 50%;}
+	}
+
+	.sidebar {
+		@include media($screen-lg){
+			padding-right: $spacing * 2;
+			width: 30%;
+		}
+	}
+}

@@ -1,0 +1,38 @@
+/**
+ * Pagination Styles
+ * DBS>Interactive
+ */
+.pagination {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	text-align: center;
+
+	&__link,
+	&__more,
+	&__current,
+	.page-numbers {
+		display: inline-block;
+		padding: 0.5em 1em;
+		text-decoration: none;
+		border-radius: 3px;
+		transition: .25s ease-in-out;
+	}
+
+	&__link,
+	.page-numbers {
+		border: 1px solid $grayDarker;
+		font-weight: lighter;
+		&:focus,
+		&:hover {
+			background: $grayDarker;
+			color: $white;
+		}
+	}
+
+	.current {
+		background: $grayDarker;
+		border: 1px solid $grayDarker;
+		font-weight: bold;
+		color: $white;
+	}
+}

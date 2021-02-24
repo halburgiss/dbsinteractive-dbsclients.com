@@ -1,0 +1,32 @@
+/**
+ * DBS Slate AMP Stylesheet
+ * DBS>Interactive
+ * 
+ * This stylesheet will only be loaded on AMP enabled pages.
+ */
+// Vendor Based Styles
+$disable-warnings                   : true;
+$output-bourbon-deprecation-warnings: false !default;
+@import "vendors/normalize/normalize";
+
+// Variables and Mixins
+@import "mixins/mixins";
+@import "mixins/layout";
+
+@import "base/font";
+@import "base/vars";
+
+// Base Styles
+@import "base/type";
+@import "base/general";
+
+// Components
+@import "components/buttons";
+@import "components/footer";
+@import "components/header";
+@import "components/navigation";
+@import "components/dbs-chevron";
+
+// Blog Page Styles
+@import "components/blog";
+@import "components/pagination";

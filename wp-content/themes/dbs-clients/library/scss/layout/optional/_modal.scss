@@ -1,0 +1,67 @@
+.modal__button {
+	background: none;
+		border: none;
+		height: 3em;
+		position: absolute;
+			right: 0;
+			top: 0;
+		width: 3em;
+		&:before,
+		&:after {
+			background-color: $black;
+			content: '';
+			display: block;
+			height: 2em;
+			position: absolute;
+				right: 1.4em;
+				top: 0.5em;
+			width: 3px;
+		}
+		&:before {
+		  -ms-transform: rotate(45deg); /* IE 9 */
+		  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+		  transform: rotate(45deg);
+		}
+	 	&:after {
+		  -ms-transform: rotate(-45deg); /* IE 9 */
+		  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+		  transform: rotate(-45deg);
+		}
+}
+
+.modal,
+.bg-img .modal,
+.bg-dark .modal {
+	background: rgba(0,0,0, .9);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 11;
+	&__box {
+		background-color: $white;
+		color: white;
+		display: inline-block;
+		height: 50%;
+		left: 50%;
+		padding: 3em;
+		position: relative;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		width: 90%;
+		z-index: 99;
+		@include media($screen-sm) {
+			width: 50%;
+		}
+		.modal__box--content {
+			display: inline-block;
+			height: 100%;
+			overflow-y: auto;
+			width: 100%;
+		}
+	}
+	p, h1, h2, h3, h4, h5, h6 {
+		color: $black;
+	}
+}

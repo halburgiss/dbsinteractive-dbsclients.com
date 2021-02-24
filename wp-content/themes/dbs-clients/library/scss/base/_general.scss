@@ -1,0 +1,304 @@
+/**
+ * General styles and helpful classes
+ * DBS>Interactive
+ */
+
+*,
+*:after,
+*:before,
+input[type=search] {
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+// Tap highlight color
+* { -webkit-tap-highlight-color: rgba($primaryColor, .3); }
+
+// Text/image selection highlight color
+::selection { background: rgba($primaryColor, .3); }
+
+// Tab/focus outline for site
+body {
+		// Tab/focus outline for site
+	:focus { outline: none; box-shadow: 0 0 0 2px #000, 0 0 0 4px #fff }
+
+	.site-content:after { // for search purposes
+		content: '';
+		background-color: rgba(0,0,0,.7);
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: opacity .35s linear;
+		z-index: 0;
+		visibility: hidden;
+	}
+	&.opened-menu,
+	&.accessibility-menu-opened {
+		.site-content:after {
+			opacity: 1;
+			transition: opacity .35s linear;
+			visibility: visible;
+		}
+	}
+}
+
+
+// Remove theme-specific focus color from the CMS
+body.wp-admin :focus {
+		box-shadow: none;
+}
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+address, ol, p, ul {
+	margin: 0 0 $spacing;
+}
+
+ol ol, ol ul, ul ol, ul ul {
+	margin: 0 0 $spacing;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid $gray;
+	display: block;
+	height: 1px;
+	margin: $spacing*2 0;
+	padding: 0;
+}
+
+blockquote {
+	border-left: .5rem solid $primaryColor;
+	font-style: normal;
+	font-weight: 400;
+	margin: $spacing*1.5 auto;
+	max-width: 90%;
+	overflow: hidden;
+	padding: 1em 0;
+	position: relative;
+	text-align: left;
+	@media screen and (min-width: $screen-sm) {
+		max-width: 80%;
+	}
+
+	img.alignnone {
+		border-radius: 100%;
+		display: block;
+		margin: 0 auto;
+		overflow: hidden;
+		text-align: center;
+
+		@media screen and (min-width:$mobileNavBP) {
+			display: inline-block;
+			float: left;
+			margin-right: 7%;
+			max-height: 8em;
+			max-width: 8em;
+		}
+	}
+
+	p {
+		margin-left: 2rem;
+	}
+
+	small {
+		@include font-scale(-1, $bodyFontSize);
+		display: inline-block;
+		margin: 0 0 0.8em 1.5em;
+		&:before { content: '\2014 \00A0'; }
+	}
+
+	cite { font-weight: bold; }
+	cite a { font-weight: normal; }
+}
+
+p:last-child {
+	margin-bottom: 0em;
+}
+
+dl {
+	margin: 0 0 $spacing * .5;
+	dt {
+		font-weight: bold;
+		margin: 0 0 $spacing * .5;
+		padding-right: 1em;
+	}
+
+	dd {
+		margin-bottom: $spacing * .5;
+		margin-left: 2em;
+	}
+}
+
+
+mark { background-color: $grayLighter; }
+
+code, tt {
+	@include font-scale(-1, $bodyFontSize);
+	background: $grayLighter;
+	border-radius: 2px;
+	border: 1px solid darken($gray,10%);
+	font-family: Inconsolata, monospace, sans-serif;
+	padding: 1px 3px;
+	white-space: pre;
+}
+
+pre {
+	@include font-scale(-1, $bodyFontSize);
+	background: $grayLighter;
+	border-radius: 3px;
+	border: 1px solid darken($grayLighter,10%);
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-family: Inconsolata, monospace, sans-serif;
+	margin: 0 0 $spacing;
+	overflow: auto;
+	padding: 1em 1.25em;
+	white-space: pre;
+	width: 100%;
+}
+
+pre code, tt {
+	background: transparent;
+	border: none;
+	font-size: inherit;
+	padding: 0;
+	white-space: -moz-pre-wrap;
+	white-space: pre-wrap;
+}
+
+
+img, svg {
+	height: auto;
+	max-width: 100%;
+}
+
+svg {
+	width: 100%; // Stabalize svg width if undefined
+}
+
+li > ol,
+li > ul {
+	margin-bottom: 0;
+}
+
+
+
+/**
+ * Helpful Re-usable Classes
+ */
+
+.site-logo {
+	fill: $primaryColor;
+	transition: fill ease-in-out 0.25s;
+	&:hover {
+		fill: lighten($primaryColor, 10%);
+	}
+}
+
+.desktop-hidden {
+	@include media ($screen-sm) {
+		display: none !important;
+	}
+}
+
+.not-mobile,
+.mobile-hidden {
+	@include media ($screen-sm-max, 'max') {
+		display: none !important;
+	}
+}
+
+.lazy-load {
+	max-width: 100%;
+}
+
+.linkclicker,
+button,
+input[type=submit] {
+	cursor:pointer;
+}
+
+.alignright {
+	float: right;
+	margin-left: $spacing;
+	margin-bottom: $spacing;
+}
+
+.alignleft {
+	float: left;
+	margin-right: $spacing;
+	margin-bottom: $spacing;
+}
+
+@include media($screen-sm) {
+	.alignright,
+	.alignleft {
+		&.size-large {
+			max-width: 50%;
+		}
+	}
+}
+
+.aligncenter, .center {
+	margin: $spacing auto;
+	display: block;
+}
+
+.alignnone {
+	margin: 0;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.hidden,
+.hide { display: none; }
+
+.assistive,
+.hide-text,
+.screen-reader-text {
+	@include size(1px);
+	border    : 0;
+	clip      : rect(0 0 0 0);
+	margin    : -1px;
+	overflow  : hidden;
+	padding   : 0;
+	position  : absolute;
+	background: $white;
+	color     : $black;
+
+	&.show-on-focus:focus {
+		background-color: rgba(0,0,0,.9);
+		border-radius: 1em;
+		box-shadow: 0 0 3px 5px;
+		color: $white;
+		clip: unset;
+		display: inline-block;
+		height: auto;
+		left: 50%;
+		padding: 6em;
+		position: fixed;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		transition: background-color .35s linear;
+		width: auto;
+		z-index: 99999;
+	}
+}
+
+.hide-text { text-indent: -9999px; }

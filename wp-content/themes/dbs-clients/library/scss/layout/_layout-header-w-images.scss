@@ -1,0 +1,75 @@
+/**
+ * EXAMPLE PARTIAL: Header with 2 and 3 images
+ * DBS>Interactive
+ */
+
+
+.partial-header-w-images {
+	@include grid();
+
+	div {
+		@include cell-space-between;
+		@include default-padding;
+	}
+
+	.header-section {
+		@include grid(6);
+		margin-left: 0;
+		padding: 2em 4em;
+		text-align: center;
+	}
+
+	.image-1,
+	.image-2 {
+		@include grid(3, $spacing);
+	}
+}
+
+.partial-header-w-three-images {
+	@include grid();
+
+	div {
+		@include cell-space-between;
+		@include default-padding;
+	}
+
+	.header-section {
+		@include grid(6);
+		align-items: flex-end;
+		display: flex;
+		margin-left: 0;
+		min-height: 25em;
+		padding: 2em 4em;
+	}
+
+	.header-content {
+		margin: 0;
+		padding: 0;
+	}
+
+	.images {
+		@include grid(6, $spacing);
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0;
+	}
+
+	.image {
+		height: calc(50% - .5em);
+		margin-top: 0;
+		margin-left: 0;
+		padding: 0;
+	}
+
+	.image-1 {
+		@include grid(12, $spacing);
+		margin-bottom: 1em;
+	}
+
+	.image-2,
+	.image-3 {
+		@include grid(6, $spacing);
+	}
+
+	.image-3 { margin-left: 1em; }
+}
